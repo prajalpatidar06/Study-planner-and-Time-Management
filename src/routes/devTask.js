@@ -1,9 +1,10 @@
-const {Router} = require('express')
+const {Router, application} = require('express')
 const{
     createDevTask,
     updateDevStatus,
     showDevTasks,
-    removeDevTask
+    removeDevTask,
+    clearDevTable,
 } = require('./../controllers/tasks')
 
 const route = Router()
@@ -49,6 +50,19 @@ function removeTask(id , remove , req , res){
     else
         res.send('Cant remove')
 }
+
+route.get('/cleartable/:password' , (req,res)=>{
+    console.log(req.params.password)
+    let _pass = req.params.password
+    if(_pass == 'Prajal@123'){
+        clearDevTable().then(()=>{
+            res.send('Table deleted succesfully')
+        })
+    } 
+    else{
+        res.send('Unautharised request!')
+    }
+})
 
 
 module.exports = {

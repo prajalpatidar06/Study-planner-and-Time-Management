@@ -8,10 +8,11 @@ app.use(express.urlencoded({force:true}))
 app.use('/cptask', cpRoute)
 app.use('/devtask', devRoute)
 
+const PORT = process.env.PORT || 4545
 
 db.sync()
 .then(()=>{
-    app.listen(4545,()=>{
-        console.log("server started at http://localhost:4545")
+    app.listen(PORT,()=>{
+        console.log(`server started at ${PORT}`)
     })
 })

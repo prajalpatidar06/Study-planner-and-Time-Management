@@ -44,6 +44,20 @@ async function removeDevTask(id){
     })
 }
 
+async function clearCPTable(){
+    await CPTasks.destroy({
+        where:{},
+        truncate: true
+    })
+}
+
+async function clearDevTable(){
+    await DevTasks.destroy({
+        where:{},
+        truncate: true
+    })
+}
+
 module.exports = {
     createCPTask,
     createDevTask,
@@ -52,5 +66,7 @@ module.exports = {
     showCPTasks,
     showDevTasks,
     removeCPTask,
-    removeDevTask
+    removeDevTask,
+    clearCPTable,
+    clearDevTable
 }
