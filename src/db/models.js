@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
-const {dbInfo} = require('./dbinfo.js')
+// const {dbInfo} = require('./dbinfo.js')
+const {dbheroku} = require('./dbheroku')
 
-const db = new Sequelize(dbInfo)
+const db = new Sequelize(dbheroku)
 
 const CPTasks = db.define('cptask',{
     id:{
