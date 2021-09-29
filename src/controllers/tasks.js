@@ -32,11 +32,25 @@ async function showDevTasks(){
     return await DevTasks.findAll()
 }
 
+async function removeCPTask(id){
+    await CPTasks.destroy({
+        where:{id}
+    })
+}
+
+async function removeDevTask(id){
+    await DevTasks.destroy({
+        where:{id}
+    })
+}
+
 module.exports = {
     createCPTask,
     createDevTask,
     updateCPStatus,
     updateDevStatus,
     showCPTasks,
-    showDevTasks
+    showDevTasks,
+    removeCPTask,
+    removeDevTask
 }
