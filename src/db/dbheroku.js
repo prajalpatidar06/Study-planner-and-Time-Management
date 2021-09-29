@@ -1,5 +1,4 @@
 const dbheroku = {
-    dialect: "postgresql",
     hostname: "ec2-52-21-252-142.compute-1.amazonaws.com",
     database: "dda6t7e5m5einj",
     Port: "5432",
