@@ -1,15 +1,23 @@
-const express = require('express')
+var express = require('express'),
+    hbs = require('hbs'),
+    app = express();
+
 const { db } = require('./db/models')
 const {cpRoute} = require('./routes/cpTask')
 const {devRoute} = require('./routes/devTask')
-const app = express()
 
 app.use(express.urlencoded({force:true}))
 app.use('/cptask', cpRoute)
 app.use('/devtask', devRoute)
+app.use(express.static(__dirname + '/public'))
+hbs.registerPartials(__dirname + '/views/partials');
+app.set('view engine' , 'hbs')
+
+app.get('/' , (req,res)=>{
+    res.render('index')
+})
 
 const PORT = 4545
-
 db.sync()
 .then(()=>{
     app.listen(PORT,()=>{

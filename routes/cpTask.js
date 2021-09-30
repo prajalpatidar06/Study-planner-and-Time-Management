@@ -11,7 +11,7 @@ const route = Router()
 
 route.get('/', (req,res)=>{
     showCPTasks().then((tasks)=>{
-        res.send(tasks)
+        res.render('cptasks',{tasks})
     })
 })
 
@@ -24,31 +24,31 @@ route.post('/' , (req,res)=>{
     else if(remove && id)
         removeTask(id , remove , req , res)
     else
-        res.send("can't update changes in table")
+        res.redirect('/cptask')
 })
 
 function updateStatus(id , status , req , res){
     let _st = (status == 'true')
     updateCPStatus( id , _st).then(()=>{
-        res.send('update successfully')
+        res.redirect('/cptask')
     })
 }
 
 function createTask(title , req , res){
     createCPTask(title).then((task)=>{
         console.log(task)
-        res.send(task)
+        res.redirect('/cptask')
     })
 }
 
 function removeTask(id , remove , req , res){
     if(remove == 'true'){
         removeCPTask(id).then(()=>{
-            res.send('remove successfully')
+            res.redirect('/cptask')
         })
     }
     else
-        res.send('Cant remove')
+        res.redirect('/cptask')
 }
 
 route.get('/cleartable/:password' , (req,res)=>{
@@ -56,11 +56,11 @@ route.get('/cleartable/:password' , (req,res)=>{
     let _pass = req.params.password
     if(_pass == 'Prajal@123'){
         clearCPTable().then(()=>{
-            res.send('Table deleted succesfully')
+            res.redirect('/cptask')
         })
     } 
     else{
-        res.send('Unautharised request!')
+        res.redirect('/cptask')
     }
 })
 
