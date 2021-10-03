@@ -17,7 +17,7 @@ app.get('/' , (req,res)=>{
     res.render('index')
 })
 
-const PORT = 4545
+const PORT = process.env.PORT || 4545
 db.sync()
 .then(()=>{
     app.listen(PORT,()=>{

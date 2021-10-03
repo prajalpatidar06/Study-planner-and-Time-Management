@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize')
-const {dbInfo} = require('./dbinfo.js')
 
-const db = new Sequelize(dbInfo)
+const db = new Sequelize({
+    dialect: "sqlite",
+    storage: __dirname + '/tasks.db'
+})
 
 const CPTasks = db.define('cptask',{
     id:{
