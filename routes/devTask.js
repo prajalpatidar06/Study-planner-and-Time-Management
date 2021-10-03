@@ -11,7 +11,7 @@ const route = Router()
 
 route.get('/' , (req,res)=>{
     showDevTasks().then((tasks)=>{
-        res.send(tasks)
+        res.render('devtasks' , {tasks})
     })
 })
 
@@ -24,31 +24,31 @@ route.post('/' , (req,res)=>{
     else if(remove && id)
         removeTask(id , remove , req , res)
     else
-        res.send("can't update changes in table")
+        res.render('devtasks' , {error: "can't update changes in table"})
 })
 
 function updateStatus(id , status , req , res){
     let _st = (status == 'true')
     updateDevStatus( id , _st).then(()=>{
-        res.send('update successfully')
+        res.render('devtasks' , {success:'update successfully'})
     })
 }
 
 function createTask(title , req , res){
     createDevTask(title).then((task)=>{
         console.log(task)
-        res.send(task)
+        res.redirect('/devtasks')
     })
 }
 
 function removeTask(id , remove , req , res){
     if(remove == 'true'){
         removeDevTask(id).then(()=>{
-            res.send('remove successfully')
+            res.render('devtasks' , {success: "remove successfully"})
         })
     }
     else
-        res.send('Cant remove')
+        res.render('devtasks' , {error: "Cant remove"})
 }
 
 route.get('/cleartable/:password' , (req,res)=>{
@@ -56,11 +56,11 @@ route.get('/cleartable/:password' , (req,res)=>{
     let _pass = req.params.password
     if(_pass == 'Prajal@123'){
         clearDevTable().then(()=>{
-            res.send('Table deleted succesfully')
+            res.render('devtasks',{success:'Table deleted succesfully'})
         })
     } 
     else{
-        res.send('Unautharised request!')
+        res.render('devtasks',{error: 'Unautharised request!'})
     }
 })
 
