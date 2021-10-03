@@ -37,7 +37,7 @@ function updateStatus(id , status , req , res){
 function createTask(title , req , res){
     createDevTask(title).then((task)=>{
         console.log(task)
-        res.redirect('/devtask')
+        res.redirect('/devtask')//ghfgjgfj
     })
 }
 
