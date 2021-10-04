@@ -1,15 +1,10 @@
 const Sequelize = require('sequelize')
 
-let db;
-if(process.env.DATABASE_URL){
-    db = new Sequelize(process.env.DATABASE_URL + "?ssl=true")
-}
-else{
-    db = new Sequelize({
-        dialect: "sqlite",
-        storage: __dirname + '/tasks.db'
-    })
-}
+
+const db = new Sequelize({
+    dialect: "sqlite",
+    storage: __dirname + '/tasks.db'
+})
 
 const CPTasks = db.define('cptask',{
     id:{

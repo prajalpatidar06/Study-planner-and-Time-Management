@@ -44,11 +44,11 @@ function createTask(title , req , res){
 function removeTask(id , remove , req , res){
     if(remove == 'true'){
         removeCPTask(id).then(()=>{
-            res.redirect('/cptask')
+            res.render('/cptask')
         })
     }
     else
-        res.redirect('/cptask')
+        res.render('/cptask')
 }
 
 route.get('/cleartable/:password' , (req,res)=>{

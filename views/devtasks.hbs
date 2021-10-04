@@ -1,33 +1,32 @@
 {{>upperbody}}
-    {{>navbar}}
-    <div class="container">
-        <h3 style="color: red;">{{error}}</h3>
-        <h3 style="color: green;">{{success}}</h3>
-        <form method="POST" class="d-flex">
-            <div class="p-2 flex-grow-1 bd-highlight">
-                <input type="text" class="form-control" name="title">
-            </div>
-            <button type="submit" class="btn btn-outline-primary btn-sm">Add Task</button>
-        </form>
-    </div>
-    <div class="card card-fluid">
-                    <div class="card-header">Development Related Tasks</div><!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .todo-list -->
-                      <div class="todo-list">
-                        {{#each tasks as |task|}}
-                            <div class="todo m-2">
-                                <div class="custom-control custom-checkbox">
-                                    {{#if task.status}}
-                                        <input type="checkbox" class="custom-control-input" name = "status" id="todo1" checked = true>
-                                    {{else}}
-                                        <input type="checkbox" class="custom-control-input" name = "status" id="todo1">
-                                    {{/if}}
-                                    <label class="custom-control-label" for="todo1">{{task.title}}</label>
-                                </div>
-                            </div>
-                        {{/each}}
-                      </div>
+{{>navbar}}
+<div class="container">
+    <form method="POST" class="d-flex">
+        <div class="p-2 flex-grow-1 bd-highlight">
+            <input type="text" class="form-control" name="title">
+        </div>
+        <button type="submit" class="btn btn-outline-primary btn-sm">Add Task</button>
+    </form>
+</div>
+<div class="card">
+    <div class="card-header">Development Related Tasks</div>
+        <div class="todo-list">
+            {{#each tasks as |task|}}
+                <div class="todo m-3">
+                    <div class="custom-control custom-checkbox">
+                        {{#if task.status}}
+                            <input type="checkbox" class="custom-control-input" id="status{{task.id}}" checked = true>
+                        {{else}}
+                            <input type="checkbox" class="custom-control-input" id="status{{id}}">
+                        {{/if}}
+                        <label class="custom-control-label" for="todo1">{{task.title}}</label>
+                        <button onclick="update({{task.id}} ,'status{{task.id}}' , 'devtask')"  class="btn btn-success btn-sm m-1">Update</button>
+                        <button onclick="removetask({{task.id}} , 'devtask')"  class="btn btn-danger btn-sm m-1">Delete</button>
                     </div>
-                  </div>
-{{>lowerbody}}
+                </div>
+                <hr>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{>lowerbody}} 
