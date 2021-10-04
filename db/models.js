@@ -10,6 +10,7 @@ else{
         storage: __dirname + '/tasks.db'
     })
 }
+
 const CPTasks = db.define('cptask',{
     id:{
         type: Sequelize.DataTypes.INTEGER,

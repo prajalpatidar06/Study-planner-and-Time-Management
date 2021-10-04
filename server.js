@@ -7,8 +7,8 @@ const {cpRoute} = require('./routes/cpTask')
 const {devRoute} = require('./routes/devTask')
 
 app.use(express.urlencoded({force:true}))
-app.use('/cptask', cpRoute)
-app.use('/devtask', devRoute)
+// app.use('/cptask', cpRoute)
+// app.use('/devtask', devRoute)
 app.use(express.static(__dirname + '/public'))
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine' , 'hbs')
