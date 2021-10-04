@@ -2,12 +2,7 @@ const Sequelize = require('sequelize')
 
 let db;
 if(process.env.DATABASE_URL){
-    db = new Sequelize({
-        connectionString: process.env.DATABASE_URL,
-        ssl:{
-            rejectUnauthorized: false
-        }
-    })
+    db = new Sequelize(process.env.DATABASE_URL + "?ssl=true")
 }
 else{
     db = new Sequelize({
