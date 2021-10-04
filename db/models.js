@@ -1,10 +1,15 @@
 const Sequelize = require('sequelize')
 
-const db = new Sequelize({
-    dialect: "sqlite",
-    storage: __dirname + '/tasks.db'
-})
-
+let db;
+if(process.env.DATABASE_URL){
+    db = new Sequelize(process.env.DATABASE_URL)
+}
+else{
+    db = new Sequelize({
+        dialect: "sqlite",
+        storage: __dirname + '/tasks.db'
+    })
+}
 const CPTasks = db.define('cptask',{
     id:{
         type: Sequelize.DataTypes.INTEGER,
